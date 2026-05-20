@@ -106,6 +106,10 @@ export const metadata: Metadata = {
     shortcut: "/icon",
   },
 
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
+
   other: {
     "mobile-web-app-capable": "yes",
     "application-name": "Piscine 1337",
