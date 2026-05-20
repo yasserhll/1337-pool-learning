@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\pc\\\\Desktop\\\\13\\\\1337_Piscine-main\" -Recurse)",
+      "Bash(Select-Object FullName)",
+      "Bash(xargs wc -l)",
+      "Bash(npm run *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

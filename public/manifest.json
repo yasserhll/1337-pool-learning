@@ -1,0 +1,38 @@
+{
+  "name": "Piscine C 1337 — Cours Complet",
+  "short_name": "Piscine 1337",
+  "description": "Cours interactif complet pour réussir la Piscine C de 1337 et le réseau 42 Network. Shell, C, Rush — explications pas à pas, exemples, exercices.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0d12",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["education", "developer-tools"],
+  "icons": [
+    {
+      "src": "/api/icon?size=192",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/api/icon?size=512",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/api/og",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Piscine C 1337 — Accueil"
+    }
+  ],
+  "prefer_related_applications": false
+}
