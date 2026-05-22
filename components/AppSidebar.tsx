@@ -1,8 +1,9 @@
 "use client";
 import { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  X, Code2, BookMarked, Globe,
+  X, Code2, BookMarked, Globe, GraduationCap,
   Terminal, GitBranch, Type, Crosshair, AlignLeft, ArrowLeftRight,
   Hash, RefreshCw, Play, Database, Layers, Wrench, Puzzle, Package,
 } from "lucide-react";
@@ -93,10 +94,12 @@ export default function AppSidebar({ open, onClose, activeId }: Props) {
       <div className="sb-header">
         <Link href="/" className="sb-logo" onClick={onClose}>
           <span className="sb-logo-icon">
-            <Code2 size={15} color="#00d4ff" />
+            <div style={{ width: 28, height: 28, background: "#fff", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Image src="/1337-logo.png" alt="1337" width={22} height={22} style={{ objectFit: "contain" }} />
+            </div>
           </span>
           <span className="sb-logo-text">
-            <span className="sb-logo-title">PISCINE C</span>
+            <span className="sb-logo-title">1337 · 42</span>
             <span className="sb-logo-sub">{_(T.nav.school)}</span>
           </span>
         </Link>
@@ -132,6 +135,12 @@ export default function AppSidebar({ open, onClose, activeId }: Props) {
 
       {/* ── Footer ── */}
       <div className="sb-footer">
+        <Link href="/cursus" className="sb-glossary-link" onClick={onClose}
+          style={{ color: "#ce93d8", marginBottom: 4 }}>
+          <GraduationCap size={14} />
+          <span>Cursus Étudiant</span>
+        </Link>
+
         <Link href="/glossaire" className="sb-glossary-link" onClick={onClose}>
           <BookMarked size={14} />
           <span>{_(T.nav.glossary)}</span>

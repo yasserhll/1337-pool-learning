@@ -1,14 +1,16 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Package, BookOpen, Lightbulb, Target, BookMarked, Search, Menu,
   Terminal, GitBranch, Type, Crosshair, AlignLeft, ArrowLeftRight,
   Hash, RefreshCw, Play, Database, Layers, Wrench, Puzzle,
-  ArrowRight, Code2, Globe,
+  ArrowRight, Code2, Globe, GraduationCap, ChevronRight, Zap,
 } from "lucide-react";
 import { modules, glossary } from "@/lib/courseData";
+import { studentModules } from "@/lib/studentData";
 import { useLang } from "@/lib/LangContext";
 import { T, tr } from "@/lib/i18n";
 import ParticlesCanvas from "@/components/ParticlesCanvas";
@@ -100,11 +102,25 @@ export default function Home() {
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to top, #0a0d12, transparent)", pointerEvents: "none" }} />
 
           <div style={{ position: "relative", zIndex: 2 }}>
-            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.32)", borderRadius: 6, padding: "4px 14px", marginBottom: 22, fontSize: 11, fontFamily: "monospace", color: "#00d4ff" }}>
-              <span className="live-dot" />
-              {_(T.home.badge)}
-            </motion.div>
+
+            {/* Logo 1337 + badge */}
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 22, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 44, height: 44, background: "#fff", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(0,212,255,0.2)" }}>
+                  <Image src="/1337-logo.png" alt="1337 Coding School" width={34} height={34} style={{ objectFit: "contain" }} />
+                </div>
+                <div style={{ fontFamily: "monospace", fontSize: 11, color: "#3d4f6b" }}>
+                  <div style={{ color: "#00d4ff", fontWeight: 700, letterSpacing: 1 }}>1337 CODING SCHOOL</div>
+                  <div>42 Network · Maroc</div>
+                </div>
+              </div>
+
+              <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.32)", borderRadius: 6, padding: "4px 14px", fontSize: 11, fontFamily: "monospace", color: "#00d4ff" }}>
+                <span className="live-dot" />
+                {_(T.home.badge)}
+              </motion.div>
+            </div>
 
             <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.09, duration: 0.5 }}
               className="hero-h1" style={{ fontSize: "3rem", fontWeight: 800, lineHeight: 1.1, marginBottom: 16, color: "#fff" }}>
@@ -129,6 +145,40 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Bannière Cursus Étudiant */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.4 }}
+              style={{ marginTop: 36 }}>
+              <Link href="/cursus" style={{ textDecoration: "none" }}>
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 16,
+                  background: "linear-gradient(135deg, rgba(206,147,216,0.08), rgba(79,195,247,0.06))",
+                  border: "1px solid rgba(206,147,216,0.3)",
+                  borderRadius: 12, padding: "16px 24px",
+                  cursor: "pointer", transition: "all 0.25s",
+                }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "#ce93d8"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 20px rgba(206,147,216,0.15)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(206,147,216,0.3)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+                >
+                  <div style={{ width: 40, height: 40, background: "rgba(206,147,216,0.12)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <GraduationCap size={20} color="#ce93d8" />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#ce93d8", fontFamily: "monospace", marginBottom: 3 }}>
+                      Cursus Étudiant — Post-Piscine
+                    </div>
+                    <div style={{ fontSize: 12, color: "#6c7a96" }}>
+                      {studentModules.length} projets · Libft, ft_printf, GNL, push_swap, philosophers, minishell
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4, color: "#ce93d8", fontFamily: "monospace", fontSize: 12 }}>
+                    <Zap size={12} />
+                    {studentModules.reduce((a, m) => a + m.xp, 0)} XP
+                    <ChevronRight size={14} />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           </div>
         </div>
 

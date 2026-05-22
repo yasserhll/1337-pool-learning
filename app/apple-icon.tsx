@@ -10,35 +10,36 @@ export default function AppleIcon() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#0d1117",
+          background: "#ffffff",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: 4,
+          gap: 8,
         }}
       >
         <div
           style={{
-            fontSize: 96,
+            fontSize: 72,
             fontWeight: 900,
-            color: "#00d4ff",
-            fontFamily: "sans-serif",
+            color: "#000000",
+            fontFamily: "monospace",
             lineHeight: 1,
-          }}
-        >
-          C
-        </div>
-        <div
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            color: "#3d4f6b",
-            fontFamily: "sans-serif",
-            letterSpacing: "4px",
+            letterSpacing: "-4px",
           }}
         >
           1337
+        </div>
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 700,
+            color: "#555555",
+            fontFamily: "monospace",
+            letterSpacing: "3px",
+          }}
+        >
+          CODING SCHOOL
         </div>
       </div>
     ),
