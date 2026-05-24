@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import {
   BookOpen, Lightbulb, Target, Clock, ArrowLeft, ArrowRight,
   FileText, AlertTriangle, CheckCircle, XCircle, Copy, Check,
-  ChevronDown, ChevronRight, Play, BookMarked,
+  ChevronDown, ChevronRight, Play,
   Terminal, GitBranch, Type, Crosshair, AlignLeft, ArrowLeftRight,
   Hash, RefreshCw, Database, Layers, Wrench, Puzzle, Package, Menu,
 } from "lucide-react";
@@ -437,8 +437,8 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
   const _ = (o: { fr: string; en: string }) => tr(o, lang);
   const [showGuide, setShowGuide] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const module = modules.find(m => m.id === id);
-  if (!module) return (
+  const mod = modules.find(m => m.id === id);
+  if (!mod) return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", color: "#6c7a96" }}>
       Module introuvable. <Link href="/" style={{ color: "#00d4ff", marginLeft: 8 }}>Retour</Link>
     </div>
@@ -446,13 +446,13 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
 
   const tagColors: Record<string, string> = { Shell: "#39d353", C: "#00d4ff", Rush: "#ff5f56" };
   const tagRgb: Record<string, string> = { Shell: "57,211,83", C: "0,212,255", Rush: "255,95,86" };
-  const color = tagColors[module.tag] || "#00d4ff";
-  const rgb = tagRgb[module.tag] || "0,212,255";
+  const color = tagColors[mod.tag] || "#00d4ff";
+  const rgb = tagRgb[mod.tag] || "0,212,255";
 
   // Related terms from glossary
   const relatedTerms = glossary.filter(t =>
-    module.description.toLowerCase().includes(t.word.toLowerCase()) ||
-    module.title.toLowerCase().includes(t.word.toLowerCase())
+    mod.description.toLowerCase().includes(t.word.toLowerCase()) ||
+    mod.title.toLowerCase().includes(t.word.toLowerCase())
   ).slice(0, 4);
 
   return (
@@ -483,20 +483,20 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
             </div>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                <h1 style={{ fontSize: 28, fontWeight: 800, color: "#e6edf3" }}>{module.title}</h1>
-                <span style={{ fontSize: 11, color, background: `rgba(${rgb},0.1)`, border: `1px solid rgba(${rgb},0.2)`, borderRadius: 4, padding: "2px 8px", fontFamily: "monospace" }}>{module.tag}</span>
+                <h1 style={{ fontSize: 28, fontWeight: 800, color: "#e6edf3" }}>{mod.title}</h1>
+                <span style={{ fontSize: 11, color, background: `rgba(${rgb},0.1)`, border: `1px solid rgba(${rgb},0.2)`, borderRadius: 4, padding: "2px 8px", fontFamily: "monospace" }}>{mod.tag}</span>
               </div>
-              <p style={{ fontSize: 14, color: "#6c7a96" }}>{module.subtitle}</p>
+              <p style={{ fontSize: 14, color: "#6c7a96" }}>{mod.subtitle}</p>
             </div>
           </div>
-          <p style={{ fontSize: 14, color: "#6c7a96", maxWidth: 700, lineHeight: 1.7, marginBottom: 20 }}>{module.description}</p>
+          <p style={{ fontSize: 14, color: "#6c7a96", maxWidth: 700, lineHeight: 1.7, marginBottom: 20 }}>{mod.description}</p>
 
           {/* Stats */}
           <div style={{ display: "flex", gap: 24, marginBottom: 20 }}>
             {[
-              { Icon: BookOpen, val: module.lessons.length, lbl: _(T.mod.lessons) },
-              { Icon: Lightbulb, val: module.lessons.reduce((a, l) => a + l.examples.length, 0), lbl: _(T.mod.examples) },
-              { Icon: Target, val: module.lessons.reduce((a, l) => a + l.exercises.length, 0), lbl: _(T.mod.exercises) },
+              { Icon: BookOpen, val: mod.lessons.length, lbl: _(T.mod.lessons) },
+              { Icon: Lightbulb, val: mod.lessons.reduce((a, l) => a + l.examples.length, 0), lbl: _(T.mod.examples) },
+              { Icon: Target, val: mod.lessons.reduce((a, l) => a + l.exercises.length, 0), lbl: _(T.mod.exercises) },
             ].map(s => (
               <div key={s.lbl} style={{ textAlign: "center" }}>
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: 4 }}><s.Icon size={18} color={color} /></div>
@@ -508,11 +508,11 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
 
           {/* Subject Guide toggle */}
           <button onClick={() => setShowGuide(!showGuide)} style={{ background: `rgba(${rgb},0.1)`, border: `1px solid rgba(${rgb},0.3)`, borderRadius: 8, padding: "8px 16px", cursor: "pointer", color, fontSize: 12, display: "flex", alignItems: "center", gap: 8 }}>
-            <FileText size={14} /> {showGuide ? <ChevronDown size={14} /> : <ChevronRight size={14} />} {_(T.mod.howToReadMod)} {module.title}
+            <FileText size={14} /> {showGuide ? <ChevronDown size={14} /> : <ChevronRight size={14} />} {_(T.mod.howToReadMod)} {mod.title}
           </button>
           {showGuide && (
             <div style={{ marginTop: 12, padding: "20px", background: `rgba(${rgb},0.04)`, border: `1px solid rgba(${rgb},0.1)`, borderRadius: 8 }}>
-              <TheoryBlock text={module.subjectGuide} />
+              <TheoryBlock text={mod.subjectGuide} />
             </div>
           )}
         </div>
@@ -540,7 +540,7 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
           )}
 
           {/* Lessons */}
-          {module.lessons.map((lesson, i) => (
+          {mod.lessons.map((lesson, i) => (
             <motion.div key={lesson.id}
               initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.12, duration: 0.48 }}>

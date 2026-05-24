@@ -6,26 +6,11 @@ import {
   ArrowLeft, BookOpen, Code, Target, Lightbulb,
   CheckCircle, XCircle, ChevronDown, ChevronRight,
   AlertTriangle, Zap, Clock, Menu, Star, RefreshCw,
-  Package, FileText, FileCode, ArrowUpDown, Users, Terminal,
-  Network, Box, Server, Cpu, Cloud, Code2, Database,
-  Layers, Wrench, GitBranch, BookMarked, Puzzle, Hash,
 } from "lucide-react";
+import { DynIcon, LESSON_ICONS } from "@/components/DynIcon";
 import { studentModules } from "@/lib/studentData";
 import type { Lesson, Exercise } from "@/lib/studentData";
 import AppSidebar from "@/components/AppSidebar";
-
-// ── Icônes ──────────────────────────────────────────────────
-const ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
-  Package, FileText, FileCode, ArrowUpDown, Users, Terminal,
-  Network, Box, Server, Cpu, Cloud, Code2, Database,
-  Layers, Wrench, GitBranch, BookMarked, Puzzle, Hash,
-  BookOpen, Code, Target, Lightbulb,
-};
-
-function DynIcon({ name, size = 18, color }: { name: string; size?: number; color?: string }) {
-  const Icon = ICON_MAP[name] ?? Package;
-  return <Icon size={size} color={color} />;
-}
 
 // ── Highlight syntaxique CORRIGÉ ─────────────────────────────
 // Utilise des guillemets simples dans les attributs style des <span>
@@ -387,12 +372,13 @@ export default function CursusDetailPage({ params }: { params: Promise<{ id: str
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {mod.lessons.map((lesson, idx) => {
               const isOpen = openLesson === lesson.id;
+              const LessonIcon = LESSON_ICONS[idx % LESSON_ICONS.length];
               return (
                 <div key={lesson.id} style={{ background: "#0d1117", border: `1px solid ${isOpen ? mod.color : "#1e2535"}`, borderRadius: 12, overflow: "hidden", transition: "border-color 0.2s", boxShadow: isOpen ? `0 0 20px rgba(${rgb},0.08)` : "none" }}>
                   <button onClick={() => setOpenLesson(isOpen ? null : lesson.id)}
                     style={{ width: "100%", background: "none", border: "none", cursor: "pointer", padding: "18px 24px", display: "flex", alignItems: "center", gap: 14, textAlign: "left" }}>
                     <div style={{ width: 36, height: 36, borderRadius: 8, background: `rgba(${rgb},0.1)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <DynIcon name={lesson.icon} size={18} color={isOpen ? mod.color : "#6c7a96"} />
+                      <LessonIcon size={18} color={isOpen ? mod.color : "#6c7a96"} />
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

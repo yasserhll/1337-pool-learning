@@ -10,7 +10,7 @@ export interface StudentModule {
   id: string;
   title: string;
   subtitle: string;
-  emoji: string;
+  icon: string;
   rank: 0 | 1 | 2 | 3 | 4 | 5;
   xp: number;
   duration: string;
@@ -1670,7 +1670,7 @@ export const studentModules: StudentModule[] = [
     id: "libft",
     title: "Libft",
     subtitle: "Ta bibliothèque personnelle en C",
-    emoji: "📦",
+    icon: "Package",
     rank: 0,
     xp: 462,
     duration: "1-2 semaines",
@@ -1685,7 +1685,7 @@ export const studentModules: StudentModule[] = [
     id: "ft_printf",
     title: "ft_printf",
     subtitle: "Recoder printf avec les variadiques",
-    emoji: "📝",
+    icon: "FileText",
     rank: 1,
     xp: 420,
     duration: "3-5 jours",
@@ -1700,7 +1700,7 @@ export const studentModules: StudentModule[] = [
     id: "get_next_line",
     title: "get_next_line",
     subtitle: "Lire un fichier ligne par ligne",
-    emoji: "📄",
+    icon: "FileCode",
     rank: 1,
     xp: 420,
     duration: "3-5 jours",
@@ -1715,7 +1715,7 @@ export const studentModules: StudentModule[] = [
     id: "push_swap",
     title: "push_swap",
     subtitle: "Algorithme de tri avec deux piles",
-    emoji: "🔀",
+    icon: "ArrowUpDown",
     rank: 2,
     xp: 420,
     duration: "1 semaine",
@@ -1730,7 +1730,7 @@ export const studentModules: StudentModule[] = [
     id: "philosophers",
     title: "Philosophers",
     subtitle: "Threads, mutexes et synchronisation",
-    emoji: "🍝",
+    icon: "Users",
     rank: 3,
     xp: 420,
     duration: "1-2 semaines",
@@ -1745,7 +1745,7 @@ export const studentModules: StudentModule[] = [
     id: "minishell",
     title: "minishell",
     subtitle: "Ton propre shell Bash",
-    emoji: "🐚",
+    icon: "Terminal",
     rank: 3,
     xp: 420,
     duration: "3-5 semaines",

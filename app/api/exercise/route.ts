@@ -5,10 +5,10 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { moduleId, lessonId, exerciseId, answer } = body;
 
-  const module = modules.find((m) => m.id === moduleId);
-  if (!module) return NextResponse.json({ error: "Module not found" }, { status: 404 });
+  const mod = modules.find((m) => m.id === moduleId);
+  if (!mod) return NextResponse.json({ error: "Module not found" }, { status: 404 });
 
-  const lesson = module.lessons.find((l) => l.id === lessonId);
+  const lesson = mod.lessons.find((l) => l.id === lessonId);
   if (!lesson) return NextResponse.json({ error: "Lesson not found" }, { status: 404 });
 
   const exercise = lesson.exercises.find((e) => e.id === exerciseId);

@@ -44,8 +44,6 @@ export default function ParticlesCanvas() {
     const ro = new ResizeObserver(init);
     ro.observe(canvas);
 
-    const MAX_DIST = mobile() ? 90 : 130;
-
     const draw = () => {
       t++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);

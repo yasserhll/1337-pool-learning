@@ -1,17 +1,18 @@
 "use client";
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import type { Lang } from "./i18n";
 
 interface LangCtx { lang: Lang; setLang: (l: Lang) => void; }
 const Ctx = createContext<LangCtx>({ lang: "fr", setLang: () => {} });
 
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("fr");
+function initLang(): Lang {
+  if (typeof window === "undefined") return "fr";
+  const s = localStorage.getItem("piscine_lang");
+  return (s === "fr" || s === "en") ? s : "fr";
+}
 
-  useEffect(() => {
-    const s = localStorage.getItem("piscine_lang") as Lang | null;
-    if (s === "fr" || s === "en") setLangState(s);
-  }, []);
+export function LangProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>(initLang);
 
   const setLang = (l: Lang) => {
     setLangState(l);

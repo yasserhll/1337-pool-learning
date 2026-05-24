@@ -38,7 +38,7 @@ function LangToggle() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 8px", borderRadius: 6, border: "1px solid #1e2535", background: "#0a0d12" }}>
       <Globe size={11} color="#6c7a96" />
-      {(["fr", "en"] as const).map((l, i) => (
+      {(["fr", "en"] as const).map((l) => (
         <button key={l} onClick={() => setLang(l)}
           style={{ background: "none", border: "none", padding: "1px 5px", fontSize: 11, fontWeight: 700, fontFamily: "monospace", cursor: "pointer", color: lang === l ? "#00d4ff" : "#3d4f6b", borderRadius: 3, transition: "color 0.2s", letterSpacing: 0.5 }}>
           {l.toUpperCase()}

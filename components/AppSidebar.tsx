@@ -3,7 +3,7 @@ import { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  X, Code2, BookMarked, Globe, GraduationCap,
+  X, BookMarked, Globe, GraduationCap,
   Terminal, GitBranch, Type, Crosshair, AlignLeft, ArrowLeftRight,
   Hash, RefreshCw, Play, Database, Layers, Wrench, Puzzle, Package,
 } from "lucide-react";

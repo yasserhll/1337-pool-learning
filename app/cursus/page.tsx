@@ -3,10 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  Menu, BookOpen, Target, Lightbulb, Package,
-  ChevronRight, Star, Clock, Zap, Code2, X,
-} from "lucide-react";
+import { Menu, ChevronRight, Star, Clock, Zap, Code2, Package, BookOpen, Lightbulb, Target } from "lucide-react";
+import { DynIcon } from "@/components/DynIcon";
 import { studentModules } from "@/lib/studentData";
 import AppSidebar from "@/components/AppSidebar";
 import ParticlesCanvas from "@/components/ParticlesCanvas";
@@ -106,7 +104,7 @@ export default function CursusPage() {
                 </h1>
                 <p style={{ color: "#6c7a96", fontSize: 16, marginTop: 12, lineHeight: 1.6 }}>
                   Tous les projets du cursus 42 — cours détaillés, exemples commentés, exercices pratiques.
-                  Du rang 0 (Libft) jusqu'aux projets avancés (minishell, philosophers).
+                  Du rang 0 (Libft) jusqu&apos;aux projets avancés (minishell, philosophers).
                 </p>
               </div>
             </div>
@@ -216,7 +214,9 @@ export default function CursusPage() {
 
                   {/* Header */}
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <div style={{ fontSize: 36 }}>{mod.emoji}</div>
+                    <div style={{ width: 52, height: 52, borderRadius: 14, background: `rgba(${hexToRgb(mod.color)},0.1)`, border: `1px solid rgba(${hexToRgb(mod.color)},0.2)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <DynIcon name={mod.icon} size={24} color={mod.color} />
+                    </div>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
                       <span style={{
                         background: `rgba(${hexToRgb(RANK_COLORS[mod.rank])},0.15)`,
