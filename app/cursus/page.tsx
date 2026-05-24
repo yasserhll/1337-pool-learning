@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -28,6 +28,7 @@ const DIFF_COLORS: Record<string, string> = {
 export default function CursusPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedRank, setSelectedRank] = useState<number | null>(null);
+  useEffect(() => { if (window.innerWidth >= 768) setSidebarOpen(true); }, []);
 
   const filtered = selectedRank === null
     ? studentModules
@@ -51,7 +52,7 @@ export default function CursusPage() {
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
       <AppSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="main-sidebar" style={{ marginLeft: 260, flex: 1 }}>
+      <div className="main-sidebar" style={{ marginLeft: sidebarOpen ? 260 : 0, flex: 1 }}>
 
         {/* ── Hero ── */}
         <div style={{

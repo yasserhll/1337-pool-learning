@@ -1,5 +1,5 @@
 "use client";
-import { useState, use } from "react";
+import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -437,6 +437,7 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
   const _ = (o: { fr: string; en: string }) => tr(o, lang);
   const [showGuide, setShowGuide] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useEffect(() => { if (window.innerWidth >= 768) setSidebarOpen(true); }, []);
   const mod = modules.find(m => m.id === id);
   if (!mod) return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", color: "#6c7a96" }}>
@@ -468,7 +469,7 @@ export default function ModulePage({ params }: { params: Promise<{ id: string }>
 
       <AppSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} activeId={id} />
 
-      <div className="main-sidebar" style={{ marginLeft: 260, flex: 1 }}>
+      <div className="main-sidebar" style={{ marginLeft: sidebarOpen ? 260 : 0, flex: 1 }}>
         {/* Header */}
         <div className="header-pad" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0a1628 100%)", borderBottom: "1px solid #1e2535", padding: "48px 60px 40px", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: -80, right: -80, width: 400, height: 400, background: `radial-gradient(circle, rgba(${rgb}, 0.07) 0%, transparent 70%)`, pointerEvents: "none" }} />

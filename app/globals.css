@@ -146,6 +146,11 @@ button:active:not(:disabled) { transform: scale(0.96) !important; }
   display: flex;
   flex-direction: column;
   transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.32s ease;
+  transform: translateX(-100%);
+}
+.app-sidebar.open {
+  transform: translateX(0);
+  box-shadow: 4px 0 24px rgba(0,0,0,0.25);
 }
 
 /* Handle de redimensionnement */
@@ -235,7 +240,7 @@ body.sb-resizing .main-sidebar { transition: none !important; }
 }
 
 .sb-close {
-  display: none;
+  display: flex;
   background: none;
   border: 1px solid #1e2535;
   border-radius: 6px;
@@ -349,9 +354,9 @@ body.sb-resizing .main-sidebar { transition: none !important; }
   animation: fadeIn 0.22s ease;
 }
 
-/* Hamburger (hidden on desktop) */
+/* Hamburger (visible sur tous les écrans) */
 .hamburger-btn {
-  display: none;
+  display: flex;
   position: fixed;
   top: 12px;
   left: 12px;
@@ -403,15 +408,14 @@ body.sb-resizing .main-sidebar { transition: none !important; }
 
 /* ─── Responsive breakpoints ──────────────────── */
 
-/* Desktop: margin suit la largeur de la sidebar */
-.main-sidebar { margin-left: var(--sb-width, 260px) !important; }
+/* Desktop: margin géré en inline style (dynamique selon état sidebar) */
+.main-sidebar { transition: margin-left 0.32s cubic-bezier(0.4,0,0.2,1); }
 
 /* Tablet */
 @media (max-width: 1024px) {
   .sidebar       { width: 220px !important; }
   .app-sidebar   { width: 240px !important; }
   .sb-resize-handle { display: none; }
-  .main-sidebar  { margin-left: 240px !important; }
   .hero-section  { padding: 48px 36px 40px !important; }
   .content-pad   { padding: 28px 36px 60px !important; }
   .search-pad    { padding: 20px 36px 0 !important; }
@@ -440,11 +444,9 @@ body.sb-resizing .main-sidebar { transition: none !important; }
     transform: translateX(0) !important;
     box-shadow: 8px 0 56px rgba(0,0,0,0.7);
   }
-  .sb-close          { display: flex !important; }
   .sb-resize-handle  { display: none !important; }
   .sidebar-overlay   { display: block; }
   .main-sidebar      { margin-left: 0 !important; }
-  .hamburger-btn     { display: flex !important; }
   .sidebar-close-btn { display: flex !important; }
 
   /* Spacing */

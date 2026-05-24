@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -53,6 +53,7 @@ export default function Home() {
   const _  = (o: { fr: string; en: string }) => tr(o, lang);
   const [searchTerm, setSearchTerm]   = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useEffect(() => { if (window.innerWidth >= 768) setSidebarOpen(true); }, []);
 
   const totalLessons   = modules.reduce((acc, m) => acc + m.lessons.length, 0);
   const totalExercises = modules.reduce((acc, m) => acc + m.lessons.reduce((a, l) => a + l.exercises.length, 0), 0);
@@ -84,7 +85,7 @@ export default function Home() {
       <AppSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main */}
-      <div className="main-sidebar" style={{ marginLeft: 260, flex: 1 }}>
+      <div className="main-sidebar" style={{ marginLeft: sidebarOpen ? 260 : 0, flex: 1 }}>
 
         {/* Lang toggle desktop (top-right of hero) */}
         <div style={{ position: "fixed", top: 14, right: 20, zIndex: 95 }}>

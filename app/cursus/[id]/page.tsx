@@ -1,5 +1,5 @@
 "use client";
-import { useState, use } from "react";
+import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -273,6 +273,7 @@ export default function CursusDetailPage({ params }: { params: Promise<{ id: str
   const mod = studentModules.find(m => m.id === id);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openLesson, setOpenLesson] = useState<string | null>(mod?.lessons[0]?.id ?? null);
+  useEffect(() => { if (window.innerWidth >= 768) setSidebarOpen(true); }, []);
 
   if (!mod) {
     return (
@@ -307,7 +308,7 @@ export default function CursusDetailPage({ params }: { params: Promise<{ id: str
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
       <AppSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="main-sidebar" style={{ marginLeft: 260, flex: 1 }}>
+      <div className="main-sidebar" style={{ marginLeft: sidebarOpen ? 260 : 0, flex: 1 }}>
 
         {/* ── Header ── */}
         <div style={{ background: "linear-gradient(135deg, #0d1117, #080e1a)", borderBottom: "1px solid #1e2535", padding: "40px 60px", position: "relative", overflow: "hidden" }}>
