@@ -117,6 +117,7 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "application-name": "Piscine 1337",
     "msapplication-TileColor": "#0a0d12",
+    "google-adsense-account": "ca-pub-9866988845281954",
   },
 };
 
