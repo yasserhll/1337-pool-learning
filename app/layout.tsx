@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LangProvider } from "@/lib/LangContext";
 import { Analytics } from "@vercel/analytics/next";
+import AffiliateBanner from "@/components/AffiliateBanner";
+import Script from "next/script";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://piscine1337.vercel.app";
@@ -170,6 +172,7 @@ export default function RootLayout({
       </head>
       <body>
         <LangProvider>{children}</LangProvider>
+        <AffiliateBanner />
         <footer style={{
           textAlign: "center",
           padding: "14px",
@@ -183,6 +186,14 @@ export default function RootLayout({
           Developed by Yassir.H
         </footer>
         <Analytics />
+        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
